@@ -7,8 +7,10 @@ public class ExampleLogger implements Logger {
 
 	@Override
 	public void log(CanMessage message, long unhandled, CanMessage previous) {
-		System.out.println("Unhandled change: 0x" + Long.toHexString(unhandled));
-		
+		System.out.print("Unhandled change address " + Integer.toHexString(message.getAddress()) + ": 0x" + Long.toHexString(message.getDataLong()));
+		if (previous != null) {
+			System.out.print(" => 0x" + Long.toHexString(previous.getDataLong()));
+		}
+		System.out.println(" = 0x" + Long.toHexString(unhandled));
 	}
-	
 }

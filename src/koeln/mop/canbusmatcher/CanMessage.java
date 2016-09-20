@@ -1,7 +1,7 @@
 package koeln.mop.canbusmatcher;
 
 public class CanMessage {
-	private long address;
+	private int address;
 	private byte[] data;
 	
 	public CanMessage() {
@@ -9,10 +9,10 @@ public class CanMessage {
 		data = new byte[] {0,0,0,0,0,0,0,0};
 	}
 	
-	public long getAddress() {
+	public int getAddress() {
 		return address;
 	}
-	public void setAddress(long address) {
+	public void setAddress(int address) {
 		this.address = address;
 	}
 	

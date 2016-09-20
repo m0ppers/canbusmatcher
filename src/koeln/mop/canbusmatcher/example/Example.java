@@ -35,14 +35,15 @@ public class Example {
 		    	}
 		    	
 		    	CanMessage message = new CanMessage();
+		    	message.setAddress(fromString(data[1]));
 		    	byte[] byteData = new byte[8];
 		    	int index = 0;
 		    	for (int i=9;i>=2;i--) {
 		    		byteData[index++] = fromString(data[i]);
 		    	}
 		    	message.setData(byteData);
-		    	
-		    	System.out.println("Line is: " + line + " => " + Long.toHexString(message.getDataLong()));
+	    		System.out.println("Line is: " + line + " => " + Long.toHexString(message.getDataLong()));
+
 		    	matcher.publishMessage(message);
 		    }
 		}

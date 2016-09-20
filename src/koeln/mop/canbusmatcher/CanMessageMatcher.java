@@ -40,9 +40,10 @@ public class CanMessageMatcher {
 				diff &= ~result.handled;
 			}
 		}
-		if (diff > 0) {
-			this.log(message, 0, previous);
+		if (diff != 0) {
+			this.log(message, diff, previous);
 		}
+		lastMessages.put(address, message);
 	}
 
 	public void setLogger(Logger logger) {
