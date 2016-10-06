@@ -16,7 +16,7 @@ public class Differ {
 			if (a.length < i || b.length < i) {
 				diff = 0xff;
 			} else {
-				diff = Byte.toUnsignedInt(a[i]) ^ Byte.toUnsignedInt(b[i]);
+				diff = (a[i] ^ b[i]) & 0xff;
 			}
 			result |= diff << (i*8);
 		}
