@@ -38,7 +38,7 @@ public class Example {
 		    	message.setAddress(fromString(data[1]));
 		    	byte[] byteData = new byte[8];
 		    	int index = 0;
-		    	for (int i=9;i>=2;i--) {
+		    	for (int i=2;i<10;i++) {
 		    		byteData[index++] = fromString(data[i]);
 		    	}
 		    	message.setData(byteData);

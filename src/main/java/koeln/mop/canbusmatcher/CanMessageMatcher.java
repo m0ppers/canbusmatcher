@@ -15,6 +15,14 @@ public class CanMessageMatcher {
 		recipients = new HashMap<Long, List<CanMessageRecipient>>();
 	}
 	
+	public void setDriver(CanDriver driver) {
+		System.out.println("JAJA 2");
+		for (long address: driver.getAddresses()) {
+			System.out.println("JAJA 22");
+			subscribeRecipient(address, driver);
+		}
+	}
+	
 	public void subscribeRecipient(long address, CanMessageRecipient recipient) {
 		List<CanMessageRecipient> recs = recipients.get(Long.valueOf(address));
 		if (recs == null) {
