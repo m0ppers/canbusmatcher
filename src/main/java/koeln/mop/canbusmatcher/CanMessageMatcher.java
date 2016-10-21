@@ -16,9 +16,7 @@ public class CanMessageMatcher {
 	}
 	
 	public void setDriver(CanDriver driver) {
-		System.out.println("JAJA 2");
 		for (long address: driver.getAddresses()) {
-			System.out.println("JAJA 22");
 			subscribeRecipient(address, driver);
 		}
 	}
