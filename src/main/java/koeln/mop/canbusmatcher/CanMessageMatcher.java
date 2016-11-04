@@ -39,6 +39,7 @@ public class CanMessageMatcher {
 		if (previous == null) {
 			diff = message.getDataLong();
 		} else {
+			System.out.println("Previous: " + Long.toHexString(previous.getDataLong()) + ":  Current: " + Long.toHexString(message.getDataLong()));
 			diff = Differ.diff(previous.getData(), message.getData());
 		}
 		if (doUselessDebug) {
