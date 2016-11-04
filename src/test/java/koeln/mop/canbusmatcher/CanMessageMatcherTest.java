@@ -135,4 +135,28 @@ public class CanMessageMatcherTest {
 		assertEquals(1, (long) addresses.get(0));
 		assertEquals(2, (long) addresses.get(1));
 	}
+	
+	@Test
+	public void testFullUnhandled() {
+		byte[] a = {(byte) 0xff, (byte)0x9f, 0x0f, 0x00, (byte)0x85, 0x06, (byte)0xff, (byte)0xff};
+		byte[] b = {(byte) 0xff, (byte)0x9f, 0x10, 0x00, (byte)0x85, 0x06, (byte)0xff, (byte)0xff};
+
+		CanMessage messageA = new CanMessage();
+		messageA.setData(a);
+		CanMessage messageB = new CanMessage();
+		messageB.setData(b);
+		
+		CanMessageMatcher matcher = new CanMessageMatcher();
+		matcher.setLogger(new Logger() {
+
+			@Override
+			public void log(CanMessage message, long unhandled, CanMessage previous) {
+				if (previous != null) {
+					assertEquals(0x1f0000, unhandled);
+				}
+			}
+		});
+		matcher.publishMessage(messageA);
+		matcher.publishMessage(messageB);
+	}
 }
