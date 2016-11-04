@@ -147,8 +147,17 @@ public class CanMessageMatcherTest {
 		messageB.setData(b);
 		
 		CanMessageMatcher matcher = new CanMessageMatcher();
+		matcher.subscribeRecipient(0, new CanMessageRecipient() {
+			@Override
+			public ConsumeResult onCanMessage(CanMessage message) {
+				// TODO Auto-generated method stub
+				ConsumeResult result = new ConsumeResult();
+				result.handled = 0xffffffff0000L;
+				return result;
+			}
+			
+		});
 		matcher.setLogger(new Logger() {
-
 			@Override
 			public void log(CanMessage message, long unhandled, CanMessage previous) {
 				if (previous != null) {
