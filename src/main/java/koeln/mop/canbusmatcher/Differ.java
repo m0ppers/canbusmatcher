@@ -18,7 +18,7 @@ public class Differ {
 			} else {
 				diff = (a[i] ^ b[i]) & 0xff;
 			}
-			result |= diff << (i*8);
+			result |= (long)diff << (i*8);
 		}
 		return result;
 	}

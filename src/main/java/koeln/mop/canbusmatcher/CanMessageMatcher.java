@@ -34,27 +34,16 @@ public class CanMessageMatcher {
 		Long address = Long.valueOf(message.getAddress());
 		List<CanMessageRecipient> recipients = this.recipients.get(address);		
 		CanMessage previous = lastMessages.get(address);
-		boolean doUselessDebug = address == 0x2a8;
 		long diff;
 		if (previous == null) {
 			diff = message.getDataLong();
 		} else {
-			System.out.println("Previous: " + Long.toHexString(previous.getDataLong()) + ":  Current: " + Long.toHexString(message.getDataLong()));
 			diff = Differ.diff(previous.getData(), message.getData());
-		}
-		if (doUselessDebug) {
-			System.out.println("Initial diff: " + Long.toHexString(diff));
 		}
 		if (recipients != null) {
 			for(CanMessageRecipient recipient: recipients) {
 				ConsumeResult result = recipient.onCanMessage(message);
-				if (doUselessDebug) {
-					System.out.println("Handled: " + Long.toHexString(result.handled));
-				}
 				diff &= ~result.handled;
-				if (doUselessDebug) {
-					System.out.println("Post diff: " + Long.toHexString(diff));
-				}
 			}
 		}
 		if (diff != 0) {
